@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Facebook } from "lucide-react";
+import { ExternalLink, Facebook } from "lucide-react";
 import { municipalConfig } from "@/lib/municipalConfig";
 import { navItems } from "@/components/layout/navItems";
 import { NavLink } from "@/components/layout/NavLink";
@@ -65,23 +65,44 @@ export function MainNav() {
           aria-label="Navegación principal"
           className="hidden items-stretch gap-7 lg:flex"
         >
-          {navItems.map((item) =>
-            item.children ? (
-              <NavDropdown
-                key={item.label}
-                label={item.label}
-                items={item.children}
-                externalHref={item.externalHref}
-                externalAriaLabel={item.externalAriaLabel}
-              />
-            ) : (
+          {navItems.map((item) => {
+            if (item.children) {
+              return (
+                <NavDropdown
+                  key={item.label}
+                  label={item.label}
+                  items={item.children}
+                  externalHref={item.externalHref}
+                  externalAriaLabel={item.externalAriaLabel}
+                />
+              );
+            }
+            if (item.externalHref) {
+              return (
+                <a
+                  key={item.label}
+                  href={item.externalHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.externalAriaLabel ?? item.label}
+                  className="relative inline-flex h-full items-center gap-1.5 px-1 py-2 text-sm font-medium uppercase tracking-wider text-[var(--color-text)] transition-colors duration-200 hover:text-[var(--color-guinda)]"
+                >
+                  {item.label}
+                  <ExternalLink
+                    aria-hidden="true"
+                    className="h-[14px] w-[14px] opacity-70"
+                  />
+                </a>
+              );
+            }
+            return (
               <NavLink
                 key={item.label}
                 href={item.href}
                 label={item.label}
               />
-            ),
-          )}
+            );
+          })}
         </nav>
 
         {redes.facebook ? (

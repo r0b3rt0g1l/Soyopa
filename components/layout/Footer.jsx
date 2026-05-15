@@ -24,10 +24,12 @@ const accesoRapido = [
 ];
 
 const transparenciaLinks = [
-  { label: "Hub de Transparencia", href: "/transparencia" },
-  { label: "Información Pública", href: "/transparencia/informacion-publica" },
-  { label: "Leyes y Reglamentos", href: "/transparencia/leyes" },
-  { label: "SEvAC", href: "/transparencia/sevac" },
+  {
+    label: "Portal de Transparencia (Sonora)",
+    href: municipalConfig.enlacesExternos.transparenciaSonora,
+    external: true,
+  },
+  { label: "Solicitar Información Pública", href: "/transparencia/informacion-publica" },
   { label: "Estructura Orgánica", href: "/gobierno/estructura-organica" },
 ];
 
@@ -130,12 +132,28 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             {transparenciaLinks.map((item) => (
               <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="text-[var(--color-cream)]/80 transition hover:text-white hover:underline underline-offset-4"
-                >
-                  {item.label}
-                </Link>
+                {item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${item.label} (abre en nueva pestaña)`}
+                    className="inline-flex items-center gap-1.5 text-[var(--color-cream)]/80 transition hover:text-white hover:underline underline-offset-4"
+                  >
+                    {item.label}
+                    <ExternalLink
+                      aria-hidden="true"
+                      className="h-3 w-3 opacity-70"
+                    />
+                  </a>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="text-[var(--color-cream)]/80 transition hover:text-white hover:underline underline-offset-4"
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

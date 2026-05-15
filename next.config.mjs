@@ -1,3 +1,6 @@
+const TRANSPARENCIA_URL =
+  "https://transparencia.sonora.gob.mx/informacion-publica/organismos/9/municipios/1157/soyopa";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -22,6 +25,25 @@ const nextConfig = {
   },
   poweredByHeader: false,
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/transparencia',
+        destination: TRANSPARENCIA_URL,
+        permanent: true,
+      },
+      {
+        source: '/transparencia/leyes',
+        destination: TRANSPARENCIA_URL,
+        permanent: true,
+      },
+      {
+        source: '/transparencia/sevac',
+        destination: TRANSPARENCIA_URL,
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

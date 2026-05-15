@@ -106,43 +106,66 @@ export function MobileMenu() {
                   className="flex-1 overflow-y-auto px-2 py-4"
                 >
                   <ul className="flex flex-col gap-1">
-                    {navItems.map((item) =>
-                      item.children ? (
-                        <li key={item.label} className="mt-3 first:mt-0">
-                          {item.externalHref ? (
+                    {navItems.map((item) => {
+                      if (item.children) {
+                        return (
+                          <li key={item.label} className="mt-3 first:mt-0">
+                            {item.externalHref ? (
+                              <a
+                                href={item.externalHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={handleClose}
+                                aria-label={item.externalAriaLabel ?? item.label}
+                                className="mx-4 mb-1 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-guinda)] hover:underline"
+                              >
+                                {item.label}
+                                <ExternalLink
+                                  aria-hidden="true"
+                                  className="h-3 w-3"
+                                />
+                              </a>
+                            ) : (
+                              <p className="px-4 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                                {item.label}
+                              </p>
+                            )}
+                            <ul className="flex flex-col">
+                              {item.children.map((child) => (
+                                <MobileLink
+                                  key={child.href}
+                                  href={child.href}
+                                  label={child.label}
+                                  pathname={pathname}
+                                  onClick={handleClose}
+                                  indent
+                                />
+                              ))}
+                            </ul>
+                          </li>
+                        );
+                      }
+                      if (item.externalHref) {
+                        return (
+                          <li key={item.label}>
                             <a
                               href={item.externalHref}
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={handleClose}
                               aria-label={item.externalAriaLabel ?? item.label}
-                              className="mx-4 mb-1 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-guinda)] hover:underline"
+                              className="flex items-center justify-between gap-2 rounded-md px-4 py-3 text-base font-medium text-[var(--color-text)] transition-colors hover:bg-[var(--color-guinda)]/5 hover:text-[var(--color-guinda)]"
                             >
-                              {item.label}
+                              <span>{item.label}</span>
                               <ExternalLink
                                 aria-hidden="true"
-                                className="h-3 w-3"
+                                className="h-4 w-4 shrink-0 text-[var(--color-text-muted)]"
                               />
                             </a>
-                          ) : (
-                            <p className="px-4 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-                              {item.label}
-                            </p>
-                          )}
-                          <ul className="flex flex-col">
-                            {item.children.map((child) => (
-                              <MobileLink
-                                key={child.href}
-                                href={child.href}
-                                label={child.label}
-                                pathname={pathname}
-                                onClick={handleClose}
-                                indent
-                              />
-                            ))}
-                          </ul>
-                        </li>
-                      ) : (
+                          </li>
+                        );
+                      }
+                      return (
                         <MobileLink
                           key={item.href}
                           href={item.href}
@@ -150,8 +173,8 @@ export function MobileMenu() {
                           pathname={pathname}
                           onClick={handleClose}
                         />
-                      ),
-                    )}
+                      );
+                    })}
                   </ul>
                 </nav>
 

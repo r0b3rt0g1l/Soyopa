@@ -21,20 +21,9 @@ export default function sitemap() {
       changeFrequency: "monthly",
     },
     { path: "/acciones-de-gobierno", priority: 0.9, changeFrequency: "daily" },
-    { path: "/transparencia", priority: 0.8, changeFrequency: "monthly" },
     {
       path: "/transparencia/informacion-publica",
       priority: 0.7,
-      changeFrequency: "monthly",
-    },
-    {
-      path: "/transparencia/leyes",
-      priority: 0.6,
-      changeFrequency: "yearly",
-    },
-    {
-      path: "/transparencia/sevac",
-      priority: 0.6,
       changeFrequency: "monthly",
     },
     { path: "/turismo", priority: 0.8, changeFrequency: "monthly" },

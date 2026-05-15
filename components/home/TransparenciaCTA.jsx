@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Scale, FileText, Network, BarChart3, ArrowRight } from "lucide-react";
+import { Scale, FileText, Network, BarChart3, ArrowRight, ExternalLink } from "lucide-react";
+import { municipalConfig } from "@/lib/municipalConfig";
 
 const pillars = [
   { icon: FileText, label: "Información Pública" },
@@ -35,21 +36,28 @@ export function TransparenciaCTA() {
             completo del Ayuntamiento — todo en un solo lugar.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link
-              href="/transparencia"
+            <a
+              href={municipalConfig.enlacesExternos.transparenciaSonora}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Portal de Transparencia del Estado de Sonora — Municipio de Soyopa (abre en nueva pestaña)"
               className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-dorado)] px-6 py-3 text-sm font-semibold text-[var(--color-guinda-deep)] shadow-lg transition hover:bg-white"
             >
-              Ir al Hub de Transparencia
-              <ArrowRight
+              Ir al Portal de Transparencia
+              <ExternalLink
                 aria-hidden="true"
-                className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
               />
-            </Link>
+            </a>
             <Link
               href="/transparencia/informacion-publica"
               className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/60 hover:bg-white/15"
             >
               Solicitar información pública
+              <ArrowRight
+                aria-hidden="true"
+                className="h-4 w-4 transition-transform group-hover:translate-x-1"
+              />
             </Link>
           </div>
         </div>
