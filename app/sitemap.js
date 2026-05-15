@@ -26,6 +26,16 @@ export default function sitemap() {
       priority: 0.7,
       changeFrequency: "monthly",
     },
+    {
+      path: "/transparencia/leyes",
+      priority: 0.6,
+      changeFrequency: "yearly",
+    },
+    {
+      path: "/transparencia/sevac",
+      priority: 0.6,
+      changeFrequency: "monthly",
+    },
     { path: "/turismo", priority: 0.8, changeFrequency: "monthly" },
     { path: "/contacto", priority: 0.7, changeFrequency: "monthly" },
   ];

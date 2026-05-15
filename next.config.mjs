@@ -32,16 +32,6 @@ const nextConfig = {
         destination: TRANSPARENCIA_URL,
         permanent: true,
       },
-      {
-        source: '/transparencia/leyes',
-        destination: TRANSPARENCIA_URL,
-        permanent: true,
-      },
-      {
-        source: '/transparencia/sevac',
-        destination: TRANSPARENCIA_URL,
-        permanent: true,
-      },
     ];
   },
 };
